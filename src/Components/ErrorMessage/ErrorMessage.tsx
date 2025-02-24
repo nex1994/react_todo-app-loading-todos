@@ -1,32 +1,26 @@
 import { useEffect, useState } from 'react';
-import { ERROR } from '../App';
+import { ERROR } from '../../types/Error';
 import classNames from 'classnames';
 
 type Props = {
   error: (typeof ERROR)[keyof typeof ERROR];
 };
 
-const STATUS = {
-  isVisible: 'isVisible',
-  isHidden: 'isHidden',
-} as const;
-
-type Status = (typeof STATUS)[keyof typeof STATUS];
 export const ErrorMessage: React.FC<Props> = ({ error }) => {
-  const [status, setStatus] = useState<Status>(STATUS.isHidden);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
-    setStatus(STATUS.isHidden);
+    setIsVisible(false);
 
     if (error !== 'noError') {
-      setStatus(STATUS.isVisible);
+      setIsVisible(true);
     }
 
-    setTimeout(() => setStatus(STATUS.isHidden), 3000);
+    setTimeout(() => setIsVisible(false), 3000);
   }, [error]);
 
   const errorClassName = classNames(
-    { hidden: status === STATUS.isHidden },
+    { hidden: !isVisible },
     'notification',
     'is-danger',
     'is-light',

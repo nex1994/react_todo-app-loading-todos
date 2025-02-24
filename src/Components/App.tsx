@@ -6,21 +6,13 @@ import { Main } from './Main';
 import { Footer } from './Footer';
 import { Todo } from '../types/Todo';
 import { ErrorMessage } from './ErrorMessage';
+import { ERROR } from '../types/Error';
 const loadedTodos = getTodos();
 const STATUS = {
   idle: 'idle',
   pending: 'pending',
   resolved: 'resolved',
   rejected: 'rejected',
-} as const;
-
-export const ERROR = {
-  noError: 'noError',
-  couldntLoadTodos: 'couldntLoadTodos',
-  noTitle: 'noTitle',
-  unableToAdd: 'unableToAdd',
-  unableToDelete: 'unableToDelete',
-  unableToUpdate: 'unableToUpdate',
 } as const;
 
 export const FILTER = {
